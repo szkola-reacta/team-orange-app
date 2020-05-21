@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import axios from 'axios';
 
 class Assets extends Component {
     constructor(props) {
@@ -14,13 +14,13 @@ class Assets extends Component {
         const DATABASE = '/database.json';
         axios.get(DATABASE)
             .catch(function (error) {
-            if (error.response.status) {
-                this.setState(
+                if (error.response.status) {
+                    this.setState(
                         { errorMessage: error.response.status }
                     )
-            }
-        })
-        .then(response => this.setState({
+                }
+            })
+            .then(response => this.setState({
                 assetList: response.data.assets,
             }))
     }
