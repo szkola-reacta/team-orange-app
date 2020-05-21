@@ -1,0 +1,93 @@
+{
+    "assets": [
+        {
+            "id": 0,
+            "assetNr": "11/2020",
+            "eqNr": "123",
+            "serialNumber": "1234",
+            "manufacturer": "ABC",
+            "description": "Something, Something"
+        },
+        {
+            "id": 1,
+            "assetNr": "12/2020",
+            "eqNr": "456",
+            "serialNumber": "5678",
+            "manufacturer": "ABC",
+            "description": "Something else, Something else"
+        },
+        {
+            "id": 2,
+            "assetNr": "13/2020",
+            "eqNr": "789",
+            "serialNumber": "9012",
+            "manufacturer": "DEF",
+            "description": "a device description"
+        },
+        {
+            "id": 3,
+            "assetNr": "14/2020",
+            "eqNr": "012",
+            "serialNumber": "3456",
+            "manufacturer": "DEF",
+            "description": "a device description of something else"
+        }
+    ],
+
+    "history": [
+        {
+            "id": 0,
+            "asset": 0,
+            "dept": "dept1",
+            "status": "created",
+            "entry_date": "2019-05-20",
+            "owner": "pracownik 1",
+            "recorded": "2019-05-20"
+        },
+        {
+            "id": 1,
+            "asset": 0,
+            "dept": "dept1",
+            "status": "moved to another dept",
+            "entry_date": "2020-05-20",
+            "owner": "pracownik 1",
+            "recorded": "2020-05-21"
+        },
+        {
+            "id": 2,
+            "asset": 1,
+            "dept": "dept2",
+            "status": "created",
+            "entry_date": "2019-05-20",
+            "owner": "pracownik 2",
+            "recorded": "2019-05-20"
+        },
+        {
+            "id": 3,
+            "asset": 1,
+            "dept": "dept2",
+            "status": "moved to another dept",
+            "entry_date": "2020-05-20",
+            "owner": "pracownik 2",
+            "recorded": "2020-05-21"
+        },
+        {
+            "id": 4,
+            "asset": 2,
+            "dept": "dept3",
+            "status": "created",
+            "entry_date": "2019-05-20",
+            "owner": "pracownik 3",
+            "recorded": "2019-05-20"
+        },
+        {
+            "id": 5,
+            "asset": 3,
+            "dept": "dept1",
+            "status": "moved to another dept",
+            "entry_date": "2020-05-20",
+            "owner": "pracownik 3",
+            "recorded": "2020-05-21"
+        }
+    ]
+}
