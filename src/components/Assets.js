@@ -12,12 +12,12 @@ class Assets extends Component {
     }
 
     componentDidMount() {
-        const DATABASE = '/database.json';
+        const DATABASE = '/adatabase.json';
         axios.get(DATABASE)
             .catch(function (error) {
             if (error.response.status) {
-                this.setState(
-                        { errorMessage: error.response.status }
+                console.log(
+                        { errorMessage: error.message }
                     )
             }
         })
@@ -27,13 +27,15 @@ class Assets extends Component {
     }
 
     render() {
-        const {assetList} = this.state;
+        const {assetList, errorMessage } = this.state;
         return (
             <div>
+                { assetList.length > 0 ?
                 <ul>{assetList.map((item) =>
                 <li key={item.id}>{item.assetNr}</li>
                 )}
                 </ul>
+                 : errorMessage }
             </div>
         )
     }
