@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 
 class Assets extends Component {
@@ -26,9 +27,13 @@ class Assets extends Component {
     }
 
     render() {
+        const {assetList} = this.state;
         return (
             <div>
-
+                <ul>{assetList.map((item) =>
+                <li key={item.id}>{item.assetNr}</li>
+                )}
+                </ul>
             </div>
         )
     }
