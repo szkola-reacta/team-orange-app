@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import AssetList from './AssetList';
+
 
 class Assets extends Component {
     constructor(props) {
         super(props);
         this.state = {
             assetList: [],
-            errorMessage: ''
+            errorMessage: '',
         };
     }
 
@@ -20,15 +22,18 @@ class Assets extends Component {
                     )
                 }
             })
-            .then(response => this.setState({
-                assetList: response.data.assets,
+        .then(response => this.setState({
+            assetList: response.data.assets,
             }))
     }
 
     render() {
+        const {assetList, errorMessage } = this.state;
         return (
             <div>
-
+                {assetList.length > 0 ?
+               <AssetList assets={assetList} />
+               : errorMessage}
             </div>
         )
     }
