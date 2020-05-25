@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
 
-import Assets from './components/Assets';
+import ItemList from './components/ItemList';
 
 
 function App() {
   return (
     <div className="App">
-      <Assets />
+      <ItemList />
     </div>
   );
 }
