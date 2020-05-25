@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import AssetList from './AssetList';
 
 
 class Assets extends Component {
@@ -7,12 +8,12 @@ class Assets extends Component {
         super(props);
         this.state = {
             assetList: [],
-            errorMessage: ''
+            errorMessage: '',
         };
     }
 
     componentDidMount() {
-        const DATABASE = '/adatabase.json';
+        const DATABASE = '/database.json';
         axios.get(DATABASE)
             .catch(function (error) {
             if (error.response.status) {
@@ -22,7 +23,7 @@ class Assets extends Component {
             }
         })
         .then(response => this.setState({
-                assetList: response.data.assets,
+            assetList: response.data.assets,
             }))
     }
 
@@ -30,12 +31,9 @@ class Assets extends Component {
         const {assetList, errorMessage } = this.state;
         return (
             <div>
-                { assetList.length > 0 ?
-                <ul>{assetList.map((item) =>
-                <li key={item.id}>{item.assetNr}</li>
-                )}
-                </ul>
-                 : errorMessage }
+                {assetList.length > 0 ?
+               <AssetList assets={assetList} />
+               : errorMessage}
             </div>
         )
     }
