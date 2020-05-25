@@ -58,7 +58,7 @@ const AssetList = ({assets}) => {
     const data = assets;
     const [filterText, setFilterText] = React.useState('');
     const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false);
-    const filteredItems = data.filter(item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase()));
+    const filteredItems = data.filter(item => item.assetNr && item.assetNr.toLowerCase().includes(filterText.toLowerCase()));
     console.log(filteredItems)
     const subHeaderComponentMemo = React.useMemo(() => {
         const handleClear = () => {
@@ -76,7 +76,6 @@ const AssetList = ({assets}) => {
                 title="Lista Środków Trwałych"
                 columns={columns}
                 data={filteredItems}
-                
             />
         </div>
     )
