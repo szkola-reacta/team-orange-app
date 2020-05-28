@@ -1,7 +1,5 @@
 import React from 'react';
 import DataTable from 'react-data-table-component';
-import InputGroup from 'react-bootstrap/InputGroup';
-import FormControl from 'react-bootstrap/FormControl';
 import Table from 'react-bootstrap/Table';
 
 

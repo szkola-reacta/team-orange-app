@@ -32,7 +32,7 @@ class Assets extends Component {
 
       handleClearInput = () => {
           this.setState({
-              filteredData: ''
+              filteredData: []
           });
       }
 
