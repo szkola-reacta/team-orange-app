@@ -17,7 +17,6 @@ class Assets extends Component {
 
       handleInputChange = event => {
         const query = event.target.value;
-
         this.setState(prevState => {
           const filteredData = prevState.data.filter(element => {
             return element.assetNr.toLowerCase().includes(query.toLowerCase());
@@ -37,7 +36,7 @@ class Assets extends Component {
       }
 
       componentDidMount() {
-          const DATABASE = '/database.json';
+          const DATABASE = `/database.json`;
           axios.get(DATABASE)
               .catch(function (error) {
               if (error.response.status) {
@@ -48,9 +47,12 @@ class Assets extends Component {
           })
           .then(response => this.setState({
               data: response.data.assets,
-              }))
+              filteredData: response.data.assets
+              })
+            )
       }
       render() {
+        console.log(this.state.data)
         return (
             <div>
                 <InputGroup className="searchForm">

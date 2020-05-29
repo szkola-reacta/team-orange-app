@@ -1,7 +1,6 @@
 import React from 'react';
-import DataTable from 'react-data-table-component';
 import Table from 'react-bootstrap/Table';
-
+import { Link } from 'react-router-dom';
 
 
 const AssetList = ({assets}) => {
@@ -20,7 +19,9 @@ const AssetList = ({assets}) => {
                 <tbody>
                     {assets.map(i =>
                     <tr key={i.id}>
-                        <td>{i.assetNr}</td>
+                        <td>
+                            <Link to={`/AssetDetails/${i.id}`}>{i.assetNr}</Link>
+                        </td>
                         <td>{i.eqNr}</td>
                         <td>{i.serialNumber}</td>
                         <td>{i.manufacturer}</td>
