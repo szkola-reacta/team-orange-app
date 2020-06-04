@@ -10,7 +10,7 @@ class ItemList extends Component {
     componentDidMount() {
         axios.get('../database.json')
             .then(res => {
-                const items = res.data;
+                const items = res.data.history;
                 this.setState({ items });
                 console.log(items);
             })
@@ -20,7 +20,9 @@ class ItemList extends Component {
         return (
             <ul>
                 {
-                    this.state.items.map(item => <li key={2}>{item}</li>)
+                    this.state.items.map(item => <li key={item.id}>{item.assetNr}</li>)}
+                {
+                    this.state.items.map(item => <li key={item.id}>{item.id}</li>)
                 }
             </ul>
         )
