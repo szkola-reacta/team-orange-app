@@ -4,13 +4,20 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from "react-router-dom";
+import { Provider, Client } from 'urql';
 
+
+const client = new Client({
+  url: 'http://localhost:8000/graphql/'
+});
 
 ReactDOM.render(
   <BrowserRouter>
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <React.StrictMode>
+      <Provider value={client}>
+        <App />
+      </Provider>
+    </React.StrictMode>
   </BrowserRouter>,
   document.getElementById('root')
 );
