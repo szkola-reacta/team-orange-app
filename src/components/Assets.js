@@ -74,5 +74,4 @@ class Assets extends Component {
         );
       }
   }
-
 export default Assets;
