@@ -13,8 +13,20 @@ export const AssetsQuery = gql`
                 name
             }
             description
-        }
-    }
+            historySet {
+                id
+                status {
+                  status
+                }
+                department {
+                  id
+                  name
+                  detailedName
+                }
+                owner
+              }
+                  }
+              }
 `;
 
 

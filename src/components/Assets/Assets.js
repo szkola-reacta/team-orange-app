@@ -33,6 +33,7 @@ class Assets extends Component {
             filteredData
           };
         });
+        console.log(this.state.filteredData)
       };
 
       handleClearInput = () => {

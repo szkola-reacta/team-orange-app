@@ -12,6 +12,8 @@ const AssetList = ({assets}) => {
                         <th>nr seryjny</th>
                         <th>producent</th>
                         <th>opis</th>
+                        <th>status</th>
+                        <th>owner</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,6 +24,18 @@ const AssetList = ({assets}) => {
                         <td>{i.serialNumber}</td>
                         <td>{i.manufacturer.name}</td>
                         <td>{i.description}</td>
+                        <td>{i.historySet.map(x =>
+                             <ul key={x.id}>
+                                 <li>{x.status.status}</li>
+                             </ul>
+                             )[i.historySet.length - 1]}
+                        </td>
+                        <td>{i.historySet.map(x =>
+                             <ul key={x.id}>
+                                 <li>{x.owner}</li>
+                             </ul>
+                             )[i.historySet.length - 1]}
+                        </td>
                     </tr>
                     )}
                 </tbody>
