@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { AssetsQuery } from "../common/queries";
 import { useQuery } from "urql";
-import ListAssets from "./ListAssets";
+import Assets from "./Assets"
 
 
 const QueryAssets = () => {
 
     const [result, reexecuteQuery] = useQuery({
         query: AssetsQuery,
-        requestPolicy: 'network-policy'
+        requestPolicy: 'network-only'
     });
     const {data, fetching, error} = result;
-
     const assetsList = {assets: data};
 
     if (fetching) return <p>Loading...</p>;
@@ -19,7 +18,7 @@ const QueryAssets = () => {
 
     return (
         <div>
-            <ListAssets assets={assetsList.assets}/>
+            <Assets assetsAll={assetsList.assets}/>
         </div>
     )
 };

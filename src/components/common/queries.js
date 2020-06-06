@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 export const AssetsQuery = gql`
     query asset($search: String, $id: Int){
         asset(search:$search, id:$id){
+            id
             assetNr
             eqNr
             serialNumber
@@ -19,7 +20,8 @@ export const AssetsQuery = gql`
 
 export const ManufacturerQuery = gql`
     query manufacturer($search: String, $id: Int){
-        manufacturer(search:$search. id:$id){
+        manufacturer(search:$search, id:$id){
+            id
             name
         }
     }
@@ -28,6 +30,7 @@ export const ManufacturerQuery = gql`
 export const StatusQuery = gql `
     query status($search: String, $id: Int){
         status(search:$search, id:$id){
+            id
             status
         }
     }

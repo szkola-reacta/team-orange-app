@@ -1,10 +1,8 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
-import { Link } from 'react-router-dom';
 
 
 const AssetList = ({assets}) => {
-
     return (
             <Table responsive striped bordered variant="dark" hover size="sm">
                 <thead>
@@ -19,12 +17,10 @@ const AssetList = ({assets}) => {
                 <tbody>
                     {assets.map(i =>
                     <tr key={i.id}>
-                        <td>
-                            <Link to={`/AssetDetails/${i.id}`}>{i.assetNr}</Link>
-                        </td>
+                        <td>{i.assetNr}</td>
                         <td>{i.eqNr}</td>
                         <td>{i.serialNumber}</td>
-                        <td>{i.manufacturer}</td>
+                        <td>{i.manufacturer.name}</td>
                         <td>{i.description}</td>
                     </tr>
                     )}
