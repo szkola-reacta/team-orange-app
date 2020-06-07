@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
-import Octicon, {X} from '@primer/octicons-react'
+import Octicon, {X} from '@primer/octicons-react';
 
-import ListAsset from './ListAsset';
 import '../style/Assets.css';
 
+import ListStatuses from './ListStatuses';
+import CreateStatus from './CreateStatus';
 
-class Assets extends Component {
+
+
+class Statuses extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,10 +24,7 @@ class Assets extends Component {
         this.setState(prevState => {
           const filteredData = prevState.data.filter(element => {
             return (
-              element.assetNr.toLowerCase().includes(query.toLowerCase()) ||
-              element.eqNr.toLowerCase().includes(query.toLowerCase()) ||
-              element.serialNumber.toLowerCase().includes(query.toLowerCase()) ||
-              element.manufacturer.name.toLowerCase().includes(query.toLowerCase()) //TODO: search through history
+              element.status.toLowerCase().includes(query.toLowerCase())
             )
           });
 
@@ -42,8 +42,8 @@ class Assets extends Component {
       }
       componentDidMount() {
         this.setState({
-          data: this.props.assetsAll.asset,
-          filteredData: this.props.assetsAll.asset
+          data: this.props.statusesAll.status,
+          filteredData: this.props.statusesAll.status
         })
   }
       render() {
@@ -64,9 +64,10 @@ class Assets extends Component {
                     </InputGroup.Text>
                     </InputGroup.Append>
                 </InputGroup>
-          <ListAsset assets={this.state.filteredData} />
+          <ListStatuses statuses={this.state.filteredData} />
+          <CreateStatus />
           </div>
         );
       }
   }
-export default Assets;
+export default Statuses;

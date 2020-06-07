@@ -39,7 +39,7 @@ export const ManufacturerQuery = gql`
     }
 `;
 
-export const StatusQuery = gql `
+export const StatusQuery = gql`
     query status($search: String, $id: Int){
         status(search:$search, id:$id){
             id

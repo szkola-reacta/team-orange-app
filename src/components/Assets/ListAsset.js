@@ -2,7 +2,7 @@ import React from 'react';
 import Table from 'react-bootstrap/Table';
 
 
-const AssetList = ({assets}) => {
+const ListAsset = ({assets}) => {
     return (
             <Table responsive striped bordered variant="dark" hover size="sm">
                 <thead>
@@ -13,7 +13,8 @@ const AssetList = ({assets}) => {
                         <th>producent</th>
                         <th>opis</th>
                         <th>status</th>
-                        <th>owner</th>
+                        <th>właściciel</th>
+                        <th>dział</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,6 +37,12 @@ const AssetList = ({assets}) => {
                              </ul>
                              )[i.historySet.length - 1]}
                         </td>
+                        <td>{i.historySet.map(x =>
+                             <ul key={x.id}>
+                                 <li>{x.department.name} {x.department.detailedName}</li>
+                             </ul>
+                             )[i.historySet.length - 1]}
+                        </td>
                     </tr>
                     )}
                 </tbody>
@@ -43,4 +50,4 @@ const AssetList = ({assets}) => {
         )
 }
 
-export default AssetList;
+export default ListAsset;
