@@ -1,25 +1,31 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
-import Octicon, {X} from '@primer/octicons-react'
+import Octicon, {X} from '@primer/octicons-react';
 
-import AssetList from './AssetList';
-import './Assets.css';
+import '../style/Assets.css';
+
+import ListStatuses from './ListStatuses';
+import CreateStatus from './CreateStatus';
 
 
-class Assets extends Component {
-    state = {
-        query: "",
-        data: [],
-        filteredData: []
-      };
 
+class Statuses extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      query: "",
+      data: [],
+      filteredData: [],
+    };
+  }
       handleInputChange = event => {
         const query = event.target.value;
         this.setState(prevState => {
           const filteredData = prevState.data.filter(element => {
-            return element.assetNr.toLowerCase().includes(query.toLowerCase());
+            return (
+              element.status.toLowerCase().includes(query.toLowerCase())
+            )
           });
 
           return {
@@ -31,28 +37,17 @@ class Assets extends Component {
 
       handleClearInput = () => {
           this.setState({
-              filteredData: []
+              filteredData: this.state.data
           });
       }
-
       componentDidMount() {
-          const DATABASE = `/database.json`;
-          axios.get(DATABASE)
-              .catch(function (error) {
-              if (error.response.status) {
-                  console.log(
-                          { errorMessage: error.message }
-                      )
-              }
-          })
-          .then(response => this.setState({
-              data: response.data.assets,
-              filteredData: response.data.assets
-              })
-            )
-      }
+        this.setState({
+          data: this.props.statusesAll.status,
+          filteredData: this.props.statusesAll.status
+        })
+  }
       render() {
-        console.log(this.state.data)
+
         return (
             <div>
                 <InputGroup className="searchForm">
@@ -69,9 +64,10 @@ class Assets extends Component {
                     </InputGroup.Text>
                     </InputGroup.Append>
                 </InputGroup>
-          <AssetList assets={this.state.filteredData} />
+          <ListStatuses statuses={this.state.filteredData} />
+          <CreateStatus />
           </div>
         );
       }
   }
-export default Assets;
+export default Statuses;
