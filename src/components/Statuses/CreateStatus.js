@@ -1,20 +1,18 @@
 import React, { useState } from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
 import PropTypes from 'prop-types';
 import { useMutation, useQuery } from 'urql';
 import { StatusQuery } from '../common/queries';
 import { CreateStatus as NewStatus } from '../common/mutations';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
 
 
 const CreateStatus = () => {
 
-    const [reexecuteQuery] = useQuery({
-        query: StatusQuery
-    });
-
     const blankStatus = { status: '' };
     const [statusState, setStatusState ] = useState([
-       {...blankStatus}
+       {...blankStatus},
     ]);
 
     const [createStatusResult, newStatus] = useMutation(NewStatus);
@@ -35,23 +33,30 @@ const CreateStatus = () => {
             console.log(createStatusResult);
         });
         console.log("ok");
-        // reexecuteQuery({ requestPolicy: 'network-only' })
     };
 
     return (
         <div>
-            <form>
-                <label htmlFor="status">Status</label>
-                <input
-                    type="text"
-                    name="status"
-                    id="statusId"
-                    className="status"
-                    value={statusState.value}
-                    onChange={handleStatusChange}
-                />
-                <input onClick={() => submit()} type="button" value="Submit"/>
-            </form>
+            <Form.Row className="align-items-center">
+                <Col xs="auto">
+                    <Form.Label htmlFor="statusId">
+                        Status
+                    </Form.Label>
+                </Col>
+                <Col xs="auto">
+                    <Form.Control
+                        type="text"
+                        name="status"
+                        id="statusId"
+                        className="status"
+                        defaultValue={statusState.value}
+                        onChange={handleStatusChange}
+                    />
+                </Col>
+                <Col xs="auto">
+                    <Button variant="primary" onClick={() => submit()}>Zapisz</Button>
+                </Col>
+            </Form.Row>
         </div>
     )
 };

@@ -16,7 +16,7 @@ class Statuses extends Component {
     this.state = {
       query: "",
       data: [],
-      filteredData: [],
+      filteredData: []
     };
   }
       handleInputChange = event => {
