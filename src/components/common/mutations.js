@@ -43,3 +43,20 @@ export const CreateStatus = gql`
         }
     }
 `;
+
+export const EditStatus = gql`
+mutation editStatus($id: Int, $status: String!) {
+    editStatus(id: $id, status: $status){
+        id
+        status
+    }
+}
+`;
+
+export const DeleteStatus = gql`
+mutation deleteStatus($id: Int){
+    deleteStatus(id:$id){
+        id
+    }
+}
+`;

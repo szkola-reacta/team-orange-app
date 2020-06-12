@@ -4,10 +4,11 @@ import { useQuery } from "urql";
 import Statuses from "./Statuses"
 
 
-const QueryStatuses = () => {
+const QueryStatuses = ({ search, id }) => {
 
     const [result, reexecuteQuery] = useQuery({
         query: StatusQuery,
+        variables: { search, id },
         requestPolicy: 'network-only'
     });
     const {data, fetching, error} = result;
