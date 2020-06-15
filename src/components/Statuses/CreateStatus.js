@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useMutation, useQuery } from 'urql';
-import { StatusQuery } from '../common/queries';
+import { useMutation } from 'urql';
 import { CreateStatus as NewStatus } from '../common/mutations';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
+import { Redirect } from 'react-router'
+import { Link } from 'react-router-dom';
 
 
-const CreateStatus = () => {
+const CreateStatus = (sth) => {
 
-    const blankStatus = { status: '' };
+    console.log(sth.location)
+
+    const blankStatus = { status: ''};
+    const [redirect, RedirectToList] = useState('false');
+
     const [statusState, setStatusState ] = useState([
        {...blankStatus},
     ]);
@@ -23,6 +28,11 @@ const CreateStatus = () => {
       setStatusState(updatedStatus);
     };
 
+    function handleRedirection() {
+        RedirectToList('true')
+        console.log(redirect)
+    }
+
     const submit = () => {
         const variables = { status: statusState.status };
         newStatus(variables).then(result => {
@@ -30,13 +40,14 @@ const CreateStatus = () => {
                 console.error(result.error);
 
             }
-            console.log(createStatusResult);
         });
         console.log("ok");
+        handleRedirection();
     };
 
     return (
         <div>
+            {redirect == 'false' ?
             <Form.Row className="align-items-center">
                 <Col xs="auto">
                     <Form.Label htmlFor="statusId">
@@ -56,7 +67,13 @@ const CreateStatus = () => {
                 <Col xs="auto">
                     <Button variant="primary" onClick={() => submit()}>Zapisz</Button>
                 </Col>
+                <Col xs="auto">
+                    <Link to='/QueryStatuses'>cancel</Link>
+                </Col>
             </Form.Row>
+                :
+             <Redirect to='/QueryStatuses'/>
+             }
         </div>
     )
 };

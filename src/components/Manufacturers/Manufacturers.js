@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 
 import '../style/Assets.css';
 
-import ListStatuses from './ListStatuses';
-import CreateStatus from './CreateStatus';
+import ListManufacturers from './ListManufacturers';
+// import CreateStatus from './CreateStatus';
 
 
-class Statuses extends Component {
+class Manufacturers extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,7 +24,7 @@ class Statuses extends Component {
         this.setState(prevState => {
           const filteredData = prevState.data.filter(element => {
             return (
-              element.status.toLowerCase().includes(query.toLowerCase())
+              element.manufacturer.toLowerCase().includes(query.toLowerCase())
             )
           });
 
@@ -42,15 +42,15 @@ class Statuses extends Component {
       }
       componentDidMount() {
         this.setState({
-          data: this.props.statusesAll.status,
-          filteredData: this.props.statusesAll.status
+          data: this.props.manufsAll.manufacturer,
+          filteredData: this.props.manufsAll.manufacturer
         })
   }
       render() {
 
         return (
             <div>
-              <Link to='/CreateStatus'a={'abc'}>Nowy status</Link>
+              {/* <Link to='/CreateStatus' a={'abc'}>Nowy status</Link> */}
                 <InputGroup className="searchForm">
                     <FormControl
                     placeholder="Search for..."
@@ -65,10 +65,10 @@ class Statuses extends Component {
                     </InputGroup.Text>
                     </InputGroup.Append>
                 </InputGroup>
-          <ListStatuses statuses={this.state.filteredData} />
+          <ListManufacturers manufacturers={this.state.filteredData} />
           {/* <CreateStatus /> */}
           </div>
         );
       }
   }
-export default Statuses;
+export default Manufacturers;

@@ -45,18 +45,46 @@ export const CreateStatus = gql`
 `;
 
 export const EditStatus = gql`
-mutation editStatus($id: Int, $status: String!) {
-    editStatus(id: $id, status: $status){
-        id
-        status
+    mutation editStatus($id: Int, $status: String!) {
+        editStatus(id: $id, status: $status){
+            id
+            status
+        }
     }
-}
 `;
 
 export const DeleteStatus = gql`
-mutation deleteStatus($id: Int){
-    deleteStatus(id:$id){
-        id
+    mutation deleteStatus($id: Int){
+        deleteStatus(id:$id){
+            id
+        }
     }
-}
+`;
+
+
+export const CreateManufacturer = gql`
+    mutation createManufacturer($name: String!){
+        createManufacturer(name: $name){
+            id
+            name
+        }
+    }
+`;
+
+
+export const EditManufacturer = gql`
+    mutation editManufacturer($id: Int!, $name: String!){
+        editManufacturer(id: $id, name: $name){
+            id
+            name
+        }
+    }
+`;
+
+export const DeleteManufacturer = gql`
+    mutation deleteManufacturer($id: Int!){
+        deleteManufacturer(id: $id){
+            id
+        }
+    }
 `;
