@@ -6,13 +6,16 @@ import { EditStatus as UpdateStatus } from '../common/mutations';
 import Form from 'react-bootstrap/Form'
 import Button from "react-bootstrap/Button";
 import DeleteStatus from './DeleteStatus';
+import { Redirect } from 'react-router'
 
 
 const EditStatus = (id) => {
 
+    const [redirect, RedirectToList] = useState('false');
+
     const [updateStatusResult, updateStatus] = useMutation(UpdateStatus);
 
-    const [result, reexecuteQuery] = useQuery({
+    const [result] = useQuery({
        query: StatusQuery,
        variables: id,
         requestPolicy: 'network-only'
@@ -35,22 +38,25 @@ const EditStatus = (id) => {
       setStatusState(updatedStatus);
     };
 
+    function handleRedirection() {
+        RedirectToList('true')
+        console.log(redirect)
+    }
+
         const submit = () => {
           const variables = { id: id.id, status: statusState.status || initStatus };
           updateStatus(variables).then(result => {
               if(result.error) {
                   console.log(result.error)
               }
-              console.log('updateStatusResult', updateStatusResult);
-              });
-            // reexecuteQuery({
-            //     query: StatusQuery,
-            //     requestPolicy: 'network-only'
-            // })
+            });
             console.log(id)
+            handleRedirection();
       };
         return (
             <div>
+                {redirect}
+                {redirect == 'false' ?
                 <Form>
                 <p>edit form</p>
                     <Form.Label sm="2">
@@ -68,8 +74,11 @@ const EditStatus = (id) => {
                     />
                         ))}
                     <Button variant="primary" onClick={() => submit()}>Zapisz</Button>
-                    <DeleteStatus id={id.id}/>
+                    <DeleteStatus id={id.id} onClick={() => handleRedirection()}/>
                     </Form>
+                    :
+                    <Redirect to='/QueryStatuses'/>
+                }
             </div>
         )
 }
