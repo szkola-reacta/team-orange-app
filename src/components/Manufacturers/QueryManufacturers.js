@@ -2,6 +2,8 @@ import React from 'react';
 import { ManufacturerQuery } from '../common/queries'
 import { useQuery } from 'urql';
 import Manufacturers from './Manufacturers';
+import { withRouter } from 'react-router-dom';
+
 
 
 const QueryManufacturers = ({ search, id }) => {
@@ -9,8 +11,9 @@ const QueryManufacturers = ({ search, id }) => {
     const [result] = useQuery({
         query: ManufacturerQuery,
         variables: { search, id },
-        requestPolicy: 'network-only'
+        requestPolicy: 'network-only',
     });
+
     const {data, fetching, error} = result;
     const manufacturersList = {manufacturers: data};
 
@@ -24,4 +27,4 @@ const QueryManufacturers = ({ search, id }) => {
     )
 };
 
-export default QueryManufacturers;
+export default withRouter(QueryManufacturers);

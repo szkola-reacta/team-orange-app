@@ -7,11 +7,10 @@ import Form from 'react-bootstrap/Form'
 import Button from "react-bootstrap/Button";
 import { Redirect } from 'react-router';
 import { withRouter } from 'react-router-dom';
+import DeleteManufacturer from './DeleteManufacturer';
 
 
 const EditManufacturer = (id) => {
-
-    console.log('edit', id.location.id)
 
     const [redirect, RedirectToList] = useState('false');
 
@@ -40,26 +39,25 @@ const EditManufacturer = (id) => {
         setManufacturerState(updatedManufacturer);
       };
 
+      const submit = () => {
+        const variables = { id: id.location.id, name: manufacturerState.name || initManufacturer };
+        updateManufacturer(variables).then(result => {
+            if(result.error) {
+                console.log(result.error)
+            }
+          });
+          handleRedirection();
+            reexecuteQuery({ requestPolicy: 'network-only' })
+    };
+
       function handleRedirection() {
           RedirectToList('true')
           console.log(redirect)
       }
 
-          const submit = () => {
-            const variables = { id: id.location.id, name: manufacturerState.name || initManufacturer };
-            updateManufacturer(variables).then(result => {
-                if(result.error) {
-                    console.log(result.error)
-                }
-              });
-              console.log(id)
-              handleRedirection();
-              reexecuteQuery({ requestPolicy: 'network-only' })
-        };
         return (
             <div>
-                {redirect}
-                {redirect == 'false' ?
+                {redirect === 'false' ?
                 <Form>
                 <p>edit form</p>
                     <Form.Label sm="2">
@@ -77,11 +75,11 @@ const EditManufacturer = (id) => {
                     />
                         ))}
                     <Button variant="primary" onClick={() => submit()}>Zapisz</Button>
-                    {/* <DeleteStatus id={id.id} onClick={() => handleRedirection()}/> */}
+                    <DeleteManufacturer id={id.location.id} onClick={() => handleRedirection()}/>
                     </Form>
                     :
                     <Redirect to='/QueryManufacturers'/>
-                }
+                    }
             </div>
         )
 }

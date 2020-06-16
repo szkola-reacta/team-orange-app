@@ -6,7 +6,7 @@ import Assets from "./Assets"
 
 const QueryAssets = () => {
 
-    const [result, reexecuteQuery] = useQuery({
+    const [result] = useQuery({
         query: AssetsQuery,
         requestPolicy: 'network-only'
     });

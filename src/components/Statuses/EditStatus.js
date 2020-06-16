@@ -56,7 +56,7 @@ const EditStatus = (id) => {
         return (
             <div>
                 {redirect}
-                {redirect == 'false' ?
+                {redirect === 'false' ?
                 <Form>
                 <p>edit form</p>
                     <Form.Label sm="2">

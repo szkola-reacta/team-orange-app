@@ -5,9 +5,10 @@ import Octicon, {X} from '@primer/octicons-react';
 import { Link } from 'react-router-dom';
 
 import '../style/Assets.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
 import ListManufacturers from './ListManufacturers';
-// import CreateStatus from './CreateStatus';
 
 
 class Manufacturers extends Component {
@@ -19,6 +20,7 @@ class Manufacturers extends Component {
       filteredData: []
     };
   }
+
       handleInputChange = event => {
         const query = event.target.value;
         this.setState(prevState => {
@@ -50,7 +52,9 @@ class Manufacturers extends Component {
 
         return (
             <div>
-              {/* <Link to='/CreateStatus' a={'abc'}>Nowy status</Link> */}
+                <Link to={{pathname: `/CreateManufacturer/`}}>
+                    new one <FontAwesomeIcon icon={faPencilAlt} />
+                </Link>
                 <InputGroup className="searchForm">
                     <FormControl
                     placeholder="Search for..."

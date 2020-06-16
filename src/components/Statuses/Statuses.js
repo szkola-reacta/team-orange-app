@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import '../style/Assets.css';
 
 import ListStatuses from './ListStatuses';
-import CreateStatus from './CreateStatus';
 
 
 class Statuses extends Component {

@@ -6,7 +6,7 @@ import Statuses from "./Statuses"
 
 const QueryStatuses = ({ search, id }) => {
 
-    const [result, reexecuteQuery] = useQuery({
+    const [result] = useQuery({
         query: StatusQuery,
         variables: { search, id },
         requestPolicy: 'network-only'
