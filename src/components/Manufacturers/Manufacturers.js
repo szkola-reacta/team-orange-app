@@ -1,10 +1,12 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Octicon, {X} from '@primer/octicons-react';
 import { Link } from 'react-router-dom';
 
 import '../style/Assets.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
 import ListManufacturers from './ListManufacturers';
 
@@ -50,7 +52,9 @@ class Manufacturers extends Component {
 
         return (
             <div>
-              {/* <Link to='/CreateStatus' a={'abc'}>Nowy status</Link> */}
+                <Link to={{pathname: `/CreateManufacturer/`}}>
+                    new one <FontAwesomeIcon icon={faPencilAlt} />
+                </Link>
                 <InputGroup className="searchForm">
                     <FormControl
                     placeholder="Search for..."

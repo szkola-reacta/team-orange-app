@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useMutation } from 'urql';
 import { DeleteStatus as DropStatus } from '../common/mutations';
 import Button from 'react-bootstrap/Button';

@@ -12,8 +12,6 @@ import DeleteManufacturer from './DeleteManufacturer';
 
 const EditManufacturer = (id) => {
 
-    console.log('edit', id.location.id)
-
     const [redirect, RedirectToList] = useState('false');
 
     const [updateManufacturerResult, updateManufacturer] = useMutation(UpdateManufacturer);
@@ -41,25 +39,24 @@ const EditManufacturer = (id) => {
         setManufacturerState(updatedManufacturer);
       };
 
+      const submit = () => {
+        const variables = { id: id.location.id, name: manufacturerState.name || initManufacturer };
+        updateManufacturer(variables).then(result => {
+            if(result.error) {
+                console.log(result.error)
+            }
+          });
+          handleRedirection();
+            reexecuteQuery({ requestPolicy: 'network-only' })
+    };
+
       function handleRedirection() {
           RedirectToList('true')
           console.log(redirect)
       }
 
-          const submit = () => {
-            const variables = { id: id.location.id, name: manufacturerState.name || initManufacturer };
-            updateManufacturer(variables).then(result => {
-                if(result.error) {
-                    console.log(result.error)
-                }
-              });
-              console.log(id)
-              handleRedirection();
-              reexecuteQuery({ requestPolicy: 'network-only' })
-        };
         return (
             <div>
-                {redirect}
                 {redirect === 'false' ?
                 <Form>
                 <p>edit form</p>
@@ -82,7 +79,7 @@ const EditManufacturer = (id) => {
                     </Form>
                     :
                     <Redirect to='/QueryManufacturers'/>
-                }
+                    }
             </div>
         )
 }

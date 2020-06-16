@@ -47,7 +47,7 @@ const CreateStatus = (sth) => {
 
     return (
         <div>
-            {redirect == 'false' ?
+            {redirect === 'false' ?
             <Form.Row className="align-items-center">
                 <Col xs="auto">
                     <Form.Label htmlFor="statusId">

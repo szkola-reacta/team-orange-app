@@ -1,19 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useMutation } from 'urql';
 import { CreateManufacturer as NewManufacturer } from '../common/mutations';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
-import { Redirect } from 'react-router'
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
 
-const CreateManufacturer = () => {
+const CreateManufacturer = props => {
 
     const blankManufacturer = { name: '' };
-    const [redirect, RedirectToList] = useState('false');
 
     const [manufacturerState, setManufacturerState ] = useState([
         {...blankManufacturer},
@@ -21,31 +19,24 @@ const CreateManufacturer = () => {
 
     const [createManufacturerResult, newManufacturer] = useMutation(NewManufacturer);
 
+
     const handleManufacturerChange = (e) => {
         const updatedManufacturer = [...manufacturerState];
         updatedManufacturer[e.target.name] = e.target.value;
         setManufacturerState(updatedManufacturer);
       };
 
-      function handleRedirection() {
-          RedirectToList('true')
-        //   reexecuteQuery({requestPolicy: 'network-only'})
-      }
-
-          const submit = () => {
-            const variables = { name: manufacturerState.name };
-            newManufacturer(variables).then(result => {
-                if(result.error) {
-                    console.log(result.error)
-                }
-              });
-              handleRedirection();
-            //   reexecuteQuery({ requestPolicy: 'network-only' })
-        };
+        const submit = useCallback(() => {
+        const variables = { name: manufacturerState.name };
+        newManufacturer(variables).then(result => {
+            props.history.push('/QueryManufacturers')
+            if(result.error) {
+                console.log(result.error)
+            }
+            });
+        });
         return (
             <div>
-                {redirect}
-                {redirect === 'false' ?
                 <Form.Row className="align-items-center">
                 <Col xs="auto">
                     <Form.Label sm="2">
@@ -69,9 +60,6 @@ const CreateManufacturer = () => {
                     <Link to='/QueryManufacturers'>cancel</Link>
                 </Col>
                 </Form.Row>
-                    :
-                <Redirect to='/QueryManufacturers'/>
-                }
             </div>
         )
 }

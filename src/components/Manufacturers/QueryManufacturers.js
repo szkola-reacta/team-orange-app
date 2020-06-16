@@ -1,15 +1,14 @@
 import React from 'react';
 import { ManufacturerQuery } from '../common/queries'
-import { useQuery, reexecuteQuery } from 'urql';
+import { useQuery } from 'urql';
 import Manufacturers from './Manufacturers';
-import { withRouter, Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { withRouter } from 'react-router-dom';
+
 
 
 const QueryManufacturers = ({ search, id }) => {
 
-    const [result, reexecuteQuery] = useQuery({
+    const [result] = useQuery({
         query: ManufacturerQuery,
         variables: { search, id },
         requestPolicy: 'network-only',
@@ -23,9 +22,6 @@ const QueryManufacturers = ({ search, id }) => {
 
     return (
         <div>
-            <Link to={{pathname: `/CreateManufacturer/`}}>
-                new one <FontAwesomeIcon icon={faPencilAlt} />
-            </Link>
             <Manufacturers manufsAll={manufacturersList.manufacturers}/>
         </div>
     )
