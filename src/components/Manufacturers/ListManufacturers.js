@@ -13,7 +13,6 @@ class ListManufacturers extends Component {
             manufacturers: [],
             selected: ''
         };
-        this.selectedManufacturer = this.selectedManufacturer.bind(this);
     }
 
     componentDidMount() {
@@ -22,19 +21,9 @@ class ListManufacturers extends Component {
         })
     }
 
-    selectedManufacturer = (id) => {
-        this.setState({
-            selected: id
-        })
-    }
-
     render() {
         const { manufacturers } = this.props
     return (
-        <div>
-            {/* {this.state.selected.length > 0 ?
-            <EditStatus id={this.state.selected}/>
-            : */}
              <Table responsive striped bordered variant="dark" hover size="sm">
                 <thead>
                     <tr>
@@ -49,17 +38,14 @@ class ListManufacturers extends Component {
                         <td>{i.id}</td>
                         <td>{i.name}</td>
                         <td>
-                            <Button onClick={() => this.selectedManufacturer(i.id)}>
+                            <Link to={{pathname: `/EditManufacturer/`, id: i.id}}>
                                 <FontAwesomeIcon icon={faPencilAlt} />
-                            </Button>
-                            <Link to={{pathname: `/EditManufacturer/`, id: i.id}}><FontAwesomeIcon icon={faPencilAlt} /></Link>
+                            </Link>
                         </td>
                     </tr>
                     )}
                 </tbody>
             </Table>
-                    {/* } */}
-        </div>
         )
     }
 }

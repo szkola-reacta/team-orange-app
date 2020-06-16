@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form'
 import Button from "react-bootstrap/Button";
 import { Redirect } from 'react-router';
 import { withRouter } from 'react-router-dom';
+import DeleteManufacturer from './DeleteManufacturer';
 
 
 const EditManufacturer = (id) => {
@@ -59,7 +60,7 @@ const EditManufacturer = (id) => {
         return (
             <div>
                 {redirect}
-                {redirect == 'false' ?
+                {redirect === 'false' ?
                 <Form>
                 <p>edit form</p>
                     <Form.Label sm="2">
@@ -77,7 +78,7 @@ const EditManufacturer = (id) => {
                     />
                         ))}
                     <Button variant="primary" onClick={() => submit()}>Zapisz</Button>
-                    {/* <DeleteStatus id={id.id} onClick={() => handleRedirection()}/> */}
+                    <DeleteManufacturer id={id.location.id} onClick={() => handleRedirection()}/>
                     </Form>
                     :
                     <Redirect to='/QueryManufacturers'/>

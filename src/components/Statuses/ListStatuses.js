@@ -19,7 +19,8 @@ class ListStatuses extends Component {
 
     componentDidMount() {
         this.setState({
-            statuses: this.props.statuses
+            statuses: this.props.statuses,
+            selected: ''
         })
     }
 

@@ -11,6 +11,7 @@ import CreateStatus from './components/Statuses/CreateStatus';
 
 import QueryManufacturers from './components/Manufacturers/QueryManufacturers';
 import EditManufacturer from './components/Manufacturers/EditManufacturer';
+import CreateManufacturer from './components/Manufacturers/CreateManufacturer';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route exact path='/CreateStatus' render={(props) => <CreateStatus {...props} />} />
         <Route exact path='/QueryManufacturers' component={QueryManufacturers} />
         <Route exact path='/EditManufacturer' render={(props) => <EditManufacturer {...props}/>}/>
+        <Route exact path='/CreateManufacturer' component={CreateManufacturer} />
       </Switch>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Octicon, {X} from '@primer/octicons-react';
@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import '../style/Assets.css';
 
 import ListManufacturers from './ListManufacturers';
-// import CreateStatus from './CreateStatus';
 
 
 class Manufacturers extends Component {
@@ -19,6 +18,7 @@ class Manufacturers extends Component {
       filteredData: []
     };
   }
+
       handleInputChange = event => {
         const query = event.target.value;
         this.setState(prevState => {
