@@ -17,7 +17,7 @@ const EditManufacturer = (id) => {
 
     const [updateManufacturerResult, updateManufacturer] = useMutation(UpdateManufacturer);
 
-    const [result] = useQuery({
+    const [result, reexecuteQuery] = useQuery({
         query: ManufacturerQuery,
         variables: { id: id.location.id },
         requestPolicy: 'network-only'
@@ -54,6 +54,7 @@ const EditManufacturer = (id) => {
               });
               console.log(id)
               handleRedirection();
+              reexecuteQuery({ requestPolicy: 'network-only' })
         };
         return (
             <div>
