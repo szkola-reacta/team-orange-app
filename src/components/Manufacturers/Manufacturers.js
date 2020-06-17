@@ -26,7 +26,7 @@ class Manufacturers extends Component {
         this.setState(prevState => {
           const filteredData = prevState.data.filter(element => {
             return (
-              element.manufacturer.toLowerCase().includes(query.toLowerCase())
+              element.name.toLowerCase().includes(query.toLowerCase())
             )
           });
 
