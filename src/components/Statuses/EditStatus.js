@@ -44,7 +44,7 @@ const EditStatus = (id) => {
     }
 
         const submit = () => {
-          const variables = { id: id.id, status: statusState.status || initStatus };
+          const variables = { id: id.id, status: statusState.status || initStatus.status.status.status };
           updateStatus(variables).then(result => {
               if(result.error) {
                   console.log(result.error)

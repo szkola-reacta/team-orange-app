@@ -1,29 +1,29 @@
 import React from 'react';
-import { ManufacturerQuery } from '../common/queries'
+import { DepartmentQuery } from '../common/queries';
 import { useQuery } from 'urql';
-import Manufacturers from './Manufacturers';
+import Departments from './Departments';
 import { withRouter } from 'react-router-dom';
 
 
-const QueryManufacturers = ({ search, id }) => {
+const QueryDepartments = ({ search, id}) => {
 
     const [result] = useQuery({
-        query: ManufacturerQuery,
+        query: DepartmentQuery,
         variables: { search, id },
         requestPolicy: 'network-only',
     });
 
     const {data, fetching, error} = result;
-    const manufacturersList = {manufacturers: data};
+    const departmentsList = {departments: data};
 
     if (fetching) return <p>Loading...</p>;
     if (error) return <p>{error.message}</p>;
 
     return (
         <div>
-            <Manufacturers manufsAll={manufacturersList.manufacturers}/>
+            <Departments deptsAll={departmentsList.departments}/>
         </div>
     )
-};
+}
 
-export default withRouter(QueryManufacturers);
+export default withRouter(QueryDepartments);

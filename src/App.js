@@ -13,6 +13,10 @@ import QueryManufacturers from './components/Manufacturers/QueryManufacturers';
 import EditManufacturer from './components/Manufacturers/EditManufacturer';
 import CreateManufacturer from './components/Manufacturers/CreateManufacturer';
 
+import QueryDepartments from './components/Departments/QueryDepartments';
+import CreateDepartment from './components/Departments/CreateDepartment';
+import EditDepartment from './components/Departments/EditDepartment';
+
 
 function App() {
   return (
@@ -26,6 +30,9 @@ function App() {
         <Route exact path='/QueryManufacturers' component={QueryManufacturers} />
         <Route exact path='/EditManufacturer' render={(props) => <EditManufacturer {...props}/>}/>
         <Route exact path='/CreateManufacturer' component={CreateManufacturer} />
+        <Route exact path='/QueryDepartments' component={QueryDepartments} />
+        <Route exact path='/CreateDepartment' component={CreateDepartment} />
+        <Route exact path='/EditDepartment' render={(props) => <EditDepartment {...props}/>}/>
       </Switch>
     </div>
   );

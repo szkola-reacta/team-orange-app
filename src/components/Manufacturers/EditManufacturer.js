@@ -40,7 +40,7 @@ const EditManufacturer = (id) => {
       };
 
       const submit = () => {
-        const variables = { id: id.location.id, name: manufacturerState.name || initManufacturer };
+        const variables = { id: id.location.id, name: manufacturerState.name || initManufacturer.name };
         updateManufacturer(variables).then(result => {
             if(result.error) {
                 console.log(result.error)

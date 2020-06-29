@@ -29,7 +29,6 @@ export const AssetsQuery = gql`
               }
 `;
 
-
 export const ManufacturerQuery = gql`
     query manufacturer($search: String, $id: Int){
         manufacturer(search:$search, id:$id){

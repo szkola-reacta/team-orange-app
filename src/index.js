@@ -5,6 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from "react-router-dom";
 import { Provider, Client } from 'urql';
+import history from './components/common/history'
 
 
 const client = new Client({
@@ -12,7 +13,7 @@ const client = new Client({
 });
 
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter history={history}>
     <React.StrictMode>
       <Provider value={client}>
         <App />

@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 
+// Asset //
 export const CreateHistoryInput = gql`
     input CreateHistoryInput {
         departmentId: Int!
@@ -35,6 +36,7 @@ export const CreateAsset = gql`
     }
 `;
 
+// Status //
 export const CreateStatus = gql`
     mutation createStatus($status: String!) {
         createStatus(status: $status){
@@ -61,7 +63,7 @@ export const DeleteStatus = gql`
     }
 `;
 
-
+// Manufacturer //
 export const CreateManufacturer = gql`
     mutation createManufacturer($name: String!){
         createManufacturer(name: $name){
@@ -84,6 +86,35 @@ export const EditManufacturer = gql`
 export const DeleteManufacturer = gql`
     mutation deleteManufacturer($id: Int!){
         deleteManufacturer(id: $id){
+            id
+        }
+    }
+`;
+
+// Department //
+export const CreateDepartment = gql`
+    mutation createDepartment($name: String!, $detailedName: String){
+        createDepartment(name: $name, detailedName: $detailedName){
+            id
+            name
+            detailedName
+        }
+    }
+`;
+
+export const EditDepartment = gql`
+    mutation editDepartment($id: Int!, $name: String, $detailedName: String){
+        editDepartment(id: $id, name: $name, detailedName: $detailedName){
+            id
+            name
+            detailedName
+        }
+    }
+`;
+
+export const DeleteDepartment = gql`
+    mutation deleteDepartment($id: Int!){
+        deleteDepartment(id: $id){
             id
         }
     }
