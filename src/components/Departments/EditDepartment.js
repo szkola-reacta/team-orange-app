@@ -28,7 +28,13 @@ const EditDepartment = id => {
         initDepartment
     ]);
 
-    console.log(initDepartment)
+    const keysArray = Object.keys(initDepartment);
+
+    const valuesArray = Object.keys(initDepartment).map(function(k) {
+        return String(initDepartment[k])
+    })
+
+    console.log(keysArray)
 
     if(fetching) return <p>Loading...</p>
     if(error) return <p>{error.message}</p>
@@ -39,11 +45,13 @@ const EditDepartment = id => {
         setDepartmentState(updatedDepartment);
       };
 
+      console.log(initDepartment.department.department[0].name)
+
       const submit = () => {
         const variables = {
             id: id.location.id,
-            name: departmentState.name || initDepartment.name,
-            detailedName: departmentState.detailedName || initDepartment.detailedName
+            name: departmentState.name || initDepartment.department.department[0].name,
+            detailedName: departmentState.detailedName || initDepartment.department.department[0].detailedName
         }
         updateDepartment(variables).then(result => {
             id.history.push('/QueryDepartments')
