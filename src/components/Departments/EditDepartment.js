@@ -6,8 +6,7 @@ import Form from 'react-bootstrap/Form'
 import Button from "react-bootstrap/Button";
 import Col from 'react-bootstrap/Col';
 import { withRouter } from 'react-router-dom';
-import history from '../common/history';
-// import DeleteDepartment from './DeleteDepartment';
+import DeleteDepartment from './DeleteDepartment';
 
 
 const EditDepartment = id => {
@@ -28,14 +27,6 @@ const EditDepartment = id => {
         initDepartment
     ]);
 
-    const keysArray = Object.keys(initDepartment);
-
-    const valuesArray = Object.keys(initDepartment).map(function(k) {
-        return String(initDepartment[k])
-    })
-
-    console.log(keysArray)
-
     if(fetching) return <p>Loading...</p>
     if(error) return <p>{error.message}</p>
 
@@ -44,8 +35,6 @@ const EditDepartment = id => {
         updatedDepartment[e.target.name] = e.target.value;
         setDepartmentState(updatedDepartment);
       };
-
-      console.log(initDepartment.department.department[0].name)
 
       const submit = () => {
         const variables = {
@@ -97,6 +86,9 @@ const EditDepartment = id => {
                 </Col>
                 <Col xs="auto">
                     <Button variant="primary" onClick={() => submit()}>Zapisz</Button>
+                </Col>
+                <Col xs="auto">
+                <DeleteDepartment id={id.location.id} />
                 </Col>
         </Form.Row>
         ))}
