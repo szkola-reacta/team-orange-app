@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
-import { withRouter } from 'react-router-dom';
-import EditStatus from './EditStatus';
+import { withRouter, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons'
 
@@ -12,31 +11,18 @@ class ListStatuses extends Component {
         super(props);
         this.state = {
             statuses: [],
-            selected: ''
         };
-        this.selectedStatus = this.selectedStatus.bind(this);
     }
 
     componentDidMount() {
         this.setState({
             statuses: this.props.statuses,
-            selected: ''
-        })
-    }
-
-    selectedStatus = (id) => {
-        this.setState({
-            selected: id
         })
     }
 
     render() {
         const { statuses } = this.props
     return (
-        <div>
-            {this.state.selected.length > 0 ?
-            <EditStatus id={this.state.selected}/>
-            :
              <Table responsive striped bordered variant="dark" hover size="sm">
                 <thead>
                     <tr>
@@ -51,16 +37,14 @@ class ListStatuses extends Component {
                         <td>{i.id}</td>
                         <td>{i.status}</td>
                         <td>
-                            <Button onClick={() => this.selectedStatus(i.id)}>
+                            <Link to={{pathname: `/EditStatus/`, id: i.id}}>
                                 <FontAwesomeIcon icon={faPencilAlt} />
-                            </Button>
+                            </Link>
                         </td>
                     </tr>
                     )}
                 </tbody>
             </Table>
-                    }
-        </div>
         )
     }
 }

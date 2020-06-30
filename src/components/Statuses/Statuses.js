@@ -5,6 +5,8 @@ import Octicon, {X} from '@primer/octicons-react';
 import { Link } from 'react-router-dom';
 
 import '../style/Assets.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
 import ListStatuses from './ListStatuses';
 
@@ -46,10 +48,11 @@ class Statuses extends Component {
         })
   }
       render() {
-
         return (
             <div>
-              <Link to='/CreateStatus'a={'abc'}>Nowy status</Link>
+              <Link to={{pathname: `/CreateStatus/`}}>
+                Nowy status <FontAwesomeIcon icon={faPencilAlt} />
+              </Link>
                 <InputGroup className="searchForm">
                     <FormControl
                     placeholder="Search for..."
@@ -65,7 +68,6 @@ class Statuses extends Component {
                     </InputGroup.Append>
                 </InputGroup>
           <ListStatuses statuses={this.state.filteredData} />
-          {/* <CreateStatus /> */}
           </div>
         );
       }

@@ -1,25 +1,26 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useMutation } from 'urql';
 import { DeleteStatus as DropStatus } from '../common/mutations';
 import Button from 'react-bootstrap/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { withRouter } from 'react-router-dom';
 
 
-const DeleteStatus = (id) => {
-    console.log(id.id)
+const DeleteStatus = props => {
 
     const [deleteStatusResult, deleteStatus] = useMutation(DropStatus);
 
-    const submit = () => {
-        const variables = id;
+    const submit = useCallback(() => {
+        const variables = {id: props.id};
         deleteStatus(variables).then(result => {
+            props.history.push('/QueryStatuses')
             if(result.error) {
                 console.log(result.error)
             }
             console.log('deleteStatusResult', deleteStatusResult)
         })
-    };
+    });
     return (
         <div>
             <Button variant="danger" onClick={() => submit()}>
@@ -30,4 +31,4 @@ const DeleteStatus = (id) => {
     )
 }
 
-export default DeleteStatus;
+export default withRouter(DeleteStatus);
