@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Octicon, {X} from '@primer/octicons-react'
-
+import { Link } from 'react-router-dom';
 import ListAsset from './ListAsset';
+
 import '../style/Assets.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
 
 class Assets extends Component {
@@ -50,6 +53,9 @@ class Assets extends Component {
 
         return (
             <div>
+              <Link to={{pathname: `/CreateAsset/`}}>
+                    new one <FontAwesomeIcon icon={faPencilAlt} />
+              </Link>
                 <InputGroup className="searchForm">
                     <FormControl
                     placeholder="Search for..."
