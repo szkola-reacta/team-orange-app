@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import { StatusQuery } from '../common/queries';
 import { useQuery } from 'urql';
 import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import store from '../../store'
 import { connect } from 'react-redux';
 
@@ -35,60 +36,47 @@ class StatusDropdown extends Component {
         this.state = {
             statusList: this.props.statusList,
             status: '',
+            statusId: '',
             search: '',
-            id: ''
+            id: '',
         };
         this.handleStatusChange = this.handleStatusChange.bind(this);
     }
 
-    componentDidMount() {
-
-        this.setState({
-            statusList: this.props.statusList
-        })
-
-        console.log(this.state.statusList)
-    }
-
-    handleStatusChange(e) {
+    handleStatusChange(e){
         const target = e.target;
-        const value = target.defaultValue;
+        const value = target.value;
         const name = target.name;
         this.setState({
-            status: value
-        })
+            [name]: value,
+        });
+      };
+
+    componentDidUpdate(){
         store.dispatch({
             type: 'SET_STATUS',
-            status: target.defaultValue
+            status: this.state.status
         })
-        console.log(this.props.status)
-      };
+    }
 
     render() {
     return (
         <div>
-            <Dropdown>
-                <Dropdown.Toggle variant="info" id="statusDropdown">
-                    status
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                {this.state.statusList.status.map(i =>
-                    <Dropdown.Item
-                        name="status"
-                        id="statusId"
-                        className="status"
-                        onClick={this.handleStatusChange}
-                        defaultValue={i.status}
-                        key={i.id}>
-                        {i.status}
-                    </Dropdown.Item>
-                )}
-                </Dropdown.Menu>
-            </Dropdown>
-        </div>
-    )
-                }
-}
+            <DropdownButton id="dropdown-item-button" title={this.state.status ? this.state.status : 'wybierz status'} name="status" value={this.state.status}>
+            {this.state.statusList.status.map(e =>
+                <Dropdown.Item
+                 as="button"
+                 name="status"
+                 value={e.status}
+                 onClick={this.handleStatusChange}
+                 key={`status-${e.id}`}>
+                {e.status}</Dropdown.Item>
+            )}
+            </DropdownButton>
+            </div>
+        )
+        }
+    }
 
 const mapStateToProps = function(store) {
     return {
