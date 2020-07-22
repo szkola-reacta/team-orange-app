@@ -9,3 +9,13 @@ export const setStatusId = () =>({
     type: types.SET_STATUS_ID,
     statusId: ''
 });
+
+export const setDeptName = () => ({
+    type: types.SET_DEPT_NAME,
+    deptName: ''
+});
+
+export const setDeptId = () => ({
+    type: types.SET_DEPT_ID,
+    deptId: ''
+});

@@ -1,12 +1,9 @@
-import React, { useState, Component } from 'react';
-import { useFormik } from 'formik';
+import React, { Component } from 'react';
 import { StatusQuery } from '../common/queries';
 import { useQuery } from 'urql';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import store from '../../store'
-import { connect } from 'react-redux';
-
 
 
 const GetStatus = ({ search, id }) => {
@@ -16,6 +13,7 @@ const GetStatus = ({ search, id }) => {
         variables: { search, id },
         requestPolicy: 'network-only'
     });
+
     const {data, fetching, error} = result;
     const statusesList = {statuses: data};
 
@@ -38,7 +36,7 @@ class StatusDropdown extends Component {
             status: '',
             statusId: '',
             search: '',
-            id: '',
+            id: ''
         };
         this.handleStatusChange = this.handleStatusChange.bind(this);
     }
@@ -51,7 +49,6 @@ class StatusDropdown extends Component {
             [name]: value.split(',')[0],
             statusId: value.split(',')[1]
         });
-        console.log(this.state.statusId)
       };
 
     componentDidUpdate(){
@@ -68,7 +65,7 @@ class StatusDropdown extends Component {
     render() {
     return (
         <div>
-            <DropdownButton id="dropdown-item-button" title={this.state.status ? this.state.status : 'wybierz status'} name="status" value={this.state.status}>
+            <DropdownButton id="dropdown-status-button" title={this.state.status ? this.state.status : 'wybierz status'} name="status" value={this.state.status}>
             {this.state.statusList.status.map(e =>
                 <Dropdown.Item
                  as="button"
@@ -84,11 +81,4 @@ class StatusDropdown extends Component {
         }
     }
 
-const mapStateToProps = function(store) {
-    return {
-        status: store.statusState.status,
-        statusId: store.statusState.statusId
-    }
-};
-
-export default connect(mapStateToProps)(GetStatus);
+export default GetStatus;
