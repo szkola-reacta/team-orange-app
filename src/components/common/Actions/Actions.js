@@ -4,3 +4,8 @@ export const setStatus = () =>({
     type: types.SET_STATUS,
     status: ''
 });
+
+export const setStatusId = () =>({
+    type: types.SET_STATUS_ID,
+    statusId: ''
+});

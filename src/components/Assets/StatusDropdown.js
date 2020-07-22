@@ -48,15 +48,21 @@ class StatusDropdown extends Component {
         const value = target.value;
         const name = target.name;
         this.setState({
-            [name]: value,
+            [name]: value.split(',')[0],
+            statusId: value.split(',')[1]
         });
+        console.log(this.state.statusId)
       };
 
     componentDidUpdate(){
         store.dispatch({
             type: 'SET_STATUS',
             status: this.state.status
-        })
+        });
+        store.dispatch({
+            type: 'SET_STATUS_ID',
+            statusId: this.state.statusId
+        });
     }
 
     render() {
@@ -67,7 +73,7 @@ class StatusDropdown extends Component {
                 <Dropdown.Item
                  as="button"
                  name="status"
-                 value={e.status}
+                 value={[e.status, e.id]}
                  onClick={this.handleStatusChange}
                  key={`status-${e.id}`}>
                 {e.status}</Dropdown.Item>
@@ -80,8 +86,9 @@ class StatusDropdown extends Component {
 
 const mapStateToProps = function(store) {
     return {
-        status: store.statusState.status
+        status: store.statusState.status,
+        statusId: store.statusState.statusId
     }
-}
+};
 
 export default connect(mapStateToProps)(GetStatus);
