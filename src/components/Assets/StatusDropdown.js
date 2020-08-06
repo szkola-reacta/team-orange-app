@@ -7,7 +7,6 @@ import store from '../../store'
 
 
 const GetStatus = ({ search, id }) => {
-
     const [result] = useQuery({
         query: StatusQuery,
         variables: { search, id },
@@ -65,15 +64,21 @@ class StatusDropdown extends Component {
     render() {
     return (
         <div>
-            <DropdownButton id="dropdown-status-button" title={this.state.status ? this.state.status : 'wybierz status'} name="status" value={this.state.status}>
+            <DropdownButton
+             id="dropdown-status-button"
+             title={this.state.status ? this.state.status : 'wybierz status'}
+             name="status"
+             value={this.state.status}
+             >
             {this.state.statusList.status.map(e =>
                 <Dropdown.Item
-                 as="button"
-                 name="status"
-                 value={[e.status, e.id]}
-                 onClick={this.handleStatusChange}
-                 key={`status-${e.id}`}>
-                {e.status}</Dropdown.Item>
+                    as="button"
+                    name="status"
+                    value={[e.status, e.id]}
+                    onClick={this.handleStatusChange}
+                    key={`status-${e.id}`}>
+                    {e.status}
+                </Dropdown.Item>
             )}
             </DropdownButton>
             </div>

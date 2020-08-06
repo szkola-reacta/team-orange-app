@@ -16,7 +16,6 @@ const GetDept = ({ search, id }) => {
 
     const {data, fetching, error} = result;
     const departmentList = { departments: data }
-    console.log(departmentList)
 
     if (fetching) return <p>Loading...</p>;
     if (error) return <p>{error.message}</p>;

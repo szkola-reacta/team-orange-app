@@ -5,8 +5,10 @@ import { CreateAsset as NewAsset } from '../common/mutations';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
 import HistoryForm from './HistoryForm';
 import { withRouter } from 'react-router-dom';
+import ManufDropdown from './ManufDropdown';
 
 
 class AssetForm extends Component {
@@ -16,15 +18,18 @@ class AssetForm extends Component {
             assetNr: '',
             description: '',
             eqNr: '',
-            history: {
-                department_id: '',
-                status: '',
-                owner: '',
-                inventoried: ''
-            },
-            manufacturer: [],
             serialNumber: ''
-        }
+        };
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(e){
+        const target = e.target;
+        const value = target.value;
+        const name = target.name;
+        this.setState({
+            [name]: value
+        })
     }
 
     // const [updateAssetResult, updateAsset] = useMutation(NewAsset);
@@ -63,23 +68,8 @@ class AssetForm extends Component {
                     name="assetNr"
                     id="assetNrId"
                     className="assetNr"
-                    // onChange={handleAssetCreation}
-                    // defaultValue={assetState.value}
-                />
-            </Col>
-            <Col xs="auto">
-                <Form.Label htmlFor="description">
-                    opis
-                </Form.Label>
-            </Col>
-            <Col xs="auto">
-                <Form.Control
-                    type="text"
-                    name="description"
-                    id="descriptionId"
-                    className="description"
-                    // onChange={handleAssetCreation}
-                    // defaultValue={assetState.value}
+                    onChange={this.handleChange}
+                    value={this.state.assetNr}
                 />
             </Col>
             <Col xs="auto">
@@ -93,19 +83,47 @@ class AssetForm extends Component {
                     name="eqNr"
                     id="eqNrId"
                     className="eqNr"
-                    // onChange={handleAssetCreation}
-                    // defaultValue={assetState.value}
+                    onChange={this.handleChange}
+                    value={this.state.eqNr}
                 />
             </Col>
             <Col xs="auto">
-                <Form.Label htmlFor="history">
-                    historia:
+                <Form.Label htmlFor="eqNr">
+                    nr seryjny
                 </Form.Label>
-                <Form.Control as="select">
-                    {}
-                </Form.Control>
             </Col>
-            <HistoryForm />
+            <Col xs="auto">
+                <Form.Control
+                    type="text"
+                    name="serialNumber"
+                    id="eserialNumberId"
+                    className="serialNumber"
+                    onChange={this.handleChange}
+                    value={this.state.serialNumber}
+                />
+            </Col>
+            <Col xs="auto">
+                <Form.Label htmlFor="eqNr">
+                    opis
+                </Form.Label>
+            </Col>
+            <Col xs="auto">
+                <Form.Control
+                    type="text"
+                    name="description"
+                    id="descriptionId"
+                    className="description"
+                    as="textarea"
+                    onChange={this.handleChange}
+                    value={this.state.description}
+                />
+            </Col>
+            <Card>
+                <Card.Body>
+                    <ManufDropdown />
+                    <HistoryForm />
+                </Card.Body>
+            </Card>
         </Form.Row>
     )
     }

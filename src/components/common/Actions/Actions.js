@@ -19,3 +19,18 @@ export const setDeptId = () => ({
     type: types.SET_DEPT_ID,
     deptId: ''
 });
+
+export const setManuf = () => ({
+    type: types.SET_MANUF,
+    manuf: ''
+});
+
+export const setManufId = () => ({
+    type: types.SET_MANUF_ID,
+    manufId: ''
+});
+
+export const setOwner = () => ({
+    type: types.SET_OWNER,
+    owner: ''
+});
