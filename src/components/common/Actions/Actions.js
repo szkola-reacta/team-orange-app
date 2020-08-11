@@ -39,3 +39,23 @@ export const setInventoried = () => ({
     type: types.SET_INVENTORIED,
     inventoried: ''
 });
+
+export const setAssetNr = () => ({
+    type: types.SET_ASSET_NR,
+    assetNr: ''
+})
+
+export const setEqNr = () => ({
+    type: types.SET_EQ_NR,
+    eqNr: ''
+})
+
+export const setDescription = () => ({
+    type: types.SET_DESCRIPTION,
+    description: ''
+})
+
+export const setSerialNumber = () => ({
+    type: types.SET_SERIAL_NR,
+    serialNumber: ''
+})

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
-import FormControl from 'react-bootstrap/FormControl';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 import DeptDropdown from './DeptDropdown';
@@ -85,7 +84,7 @@ class HistoryForm extends Component {
                         value={this.state.inventoried}
                     />
                     </InputGroup>
-                </Col>
+            </Col>
             </Form.Row>
         </div>
     )

@@ -1,3 +1,7 @@
+export const SET_ASSET_NR = 'SET_ASSET_NR';
+export const SET_EQ_NR = 'SET_EQ_NR';
+export const SET_SERIAL_NR = 'SET_SERIAL_NR';
+export const SET_DESCRIPTION = 'SET_DESCRIPTION';
 export const SET_STATUS = 'SET_STATUS';
 export const SET_STATUS_ID = 'SET_STATUS_ID';
 export const SET_DEPT_NAME = 'SET_DEPT_NAME';

@@ -11,7 +11,7 @@ export const CreateHistoryInput = gql`
 `;
 
 export const CreateAsset = gql`
-    mutation createAsset($assetNr: String!, $description: String, $eqNr: String, $history: [CreateHistoryInput!], $manufacturer: Int!, $serialNumber: String) {
+    mutation createAsset($assetNr: String, $description: String, $eqNr: String, $history: [CreateHistoryInput!], $manufacturer: Int!, $serialNumber: String) {
         createAsset(assetNr: $assetNr, description: $description, eqNr: $eqNr, history: $history, manufacturer: $manufacturer, serialNumber: $serialNumber) {
             id
             assetNr
@@ -30,7 +30,11 @@ export const CreateAsset = gql`
                     status
                 }
             }
-            manufacturer
+            manufacturer {
+                manufacturer {
+                    id
+                }
+            }
             serialNumber
         }
     }

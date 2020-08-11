@@ -9,6 +9,7 @@ import Card from 'react-bootstrap/Card';
 import HistoryForm from './HistoryForm';
 import { withRouter } from 'react-router-dom';
 import ManufDropdown from './ManufDropdown';
+import store from '../../store';
 
 
 class AssetForm extends Component {
@@ -30,6 +31,27 @@ class AssetForm extends Component {
         this.setState({
             [name]: value
         })
+        console.log(this.state.description)
+    }
+
+    componentDidUpdate(){
+        store.dispatch({
+            type: 'SET_ASSET_NR',
+            assetNr: this.state.assetNr
+        });
+        store.dispatch({
+            type: 'SET_EQ_NR',
+            eqNr: this.state.eqNr
+        });
+        store.dispatch({
+            type: 'SET_SERIAL_NR',
+            serialNumber: this.state.serialNumber
+        });
+        store.dispatch({
+            type: 'SET_DESCRIPTION',
+            description: this.state.description
+        });
+
     }
 
     // const [updateAssetResult, updateAsset] = useMutation(NewAsset);
@@ -96,14 +118,14 @@ class AssetForm extends Component {
                 <Form.Control
                     type="text"
                     name="serialNumber"
-                    id="eserialNumberId"
+                    id="serialNumberId"
                     className="serialNumber"
                     onChange={this.handleChange}
                     value={this.state.serialNumber}
                 />
             </Col>
             <Col xs="auto">
-                <Form.Label htmlFor="eqNr">
+                <Form.Label htmlFor="description">
                     opis
                 </Form.Label>
             </Col>
