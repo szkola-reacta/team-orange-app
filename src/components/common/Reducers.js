@@ -4,6 +4,7 @@ import statusReducer from './Reducers/statusReducer';
 import deptReducer from './Reducers/deptReducer';
 import manufReducer from './Reducers/manufReducer';
 import ownerReducer from './Reducers/ownerReducer';
+import inventoriedReducer from './Reducers/inventoriedReducer';
 
 
 var reducers = combineReducers({
@@ -11,6 +12,7 @@ var reducers = combineReducers({
     deptState: deptReducer,
     manufState: manufReducer,
     ownerState: ownerReducer,
+    inventoriedState: inventoriedReducer,
 });
 
 export default reducers;

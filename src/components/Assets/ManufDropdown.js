@@ -38,7 +38,6 @@ class ManufDropdown extends Component {
             id: ''
         }
         this.handleManufChange = this.handleManufChange.bind(this);
-        console.log(this.props.manufList)
     }
 
     handleManufChange(e){

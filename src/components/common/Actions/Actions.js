@@ -34,3 +34,8 @@ export const setOwner = () => ({
     type: types.SET_OWNER,
     owner: ''
 });
+
+export const setInventoried = () => ({
+    type: types.SET_INVENTORIED,
+    inventoried: ''
+});

@@ -5,3 +5,4 @@ export const SET_DEPT_ID = 'SET_DEPT_ID';
 export const SET_MANUF = 'SET_MANUF';
 export const SET_MANUF_ID = 'SET_MANUF_ID';
 export const SET_OWNER = 'SET_OWNER';
+export const SET_INVENTORIED = 'SET_INVENTORIED';
