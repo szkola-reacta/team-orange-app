@@ -24,6 +24,8 @@ export const AssetsQuery = gql`
                   detailedName
                 }
                 owner
+                inventoried
+                entryDate
               }
                   }
               }

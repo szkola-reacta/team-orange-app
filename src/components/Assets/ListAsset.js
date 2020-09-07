@@ -1,5 +1,9 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
+import { withRouter, Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import DeleteAsset from './DeleteAsset';
 
 
 const ListAsset = ({assets}) => {
@@ -15,6 +19,7 @@ const ListAsset = ({assets}) => {
                         <th>status</th>
                         <th>właściciel</th>
                         <th>dział</th>
+                        <th>edytuj</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,6 +48,7 @@ const ListAsset = ({assets}) => {
                              </ul>
                              )[i.historySet.length - 1]}
                         </td>
+                        <td><DeleteAsset id={i.id} /></td>
                     </tr>
                     )}
                 </tbody>

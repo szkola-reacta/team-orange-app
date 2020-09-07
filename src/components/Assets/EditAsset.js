@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { CreateAsset as NewAsset } from '../common/mutations';
+import { EditAsset as UpdateAsset } from '../common/mutations';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -7,9 +7,11 @@ import AssetForm from './AssetForm';
 import { useMutation } from 'urql';
 
 
-const CreateAsset = props => {
+const EditAsset = props => {
 
-    const blankAsset = {
+    const initAsset = {
+
+        assetId: props.assetId,
         assetNr: props.assetNr,
         eqNr: props.eqNr,
         serialNumber: props.serialNumber,
@@ -23,17 +25,17 @@ const CreateAsset = props => {
         }]
     }
 
-    const [createAssetResult, newAsset] = useMutation(NewAsset);
+    const [UpdateAssetResult, updateAsset] = useMutation(UpdateAsset);
 
     const submit = useCallback(() => {
-        const variables = blankAsset;
-        newAsset(variables).then(result => {
+        const variables = initAsset;
+        updateAsset(variables).then(result => {
             props.history.push('/QueryAssets')
             if(result.error) {
                 console.log(result.error)
             }
         });
-        console.log(createAssetResult)
+        console.log(UpdateAssetResult)
     });
 
     return (
@@ -62,4 +64,4 @@ const mapStateToProps = function(store) {
     }
 };
 
-export default connect(mapStateToProps)(CreateAsset);
+export default connect(mapStateToProps)(EditAsset);

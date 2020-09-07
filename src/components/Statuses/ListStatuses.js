@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Table from 'react-bootstrap/Table';
-import Button from 'react-bootstrap/Button';
 import { withRouter, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons'

@@ -6,7 +6,7 @@ export const CreateHistoryInput = gql`
         departmentId: Int!
         status: Int!
         onwer: String
-        inventoried: DateTime
+        inventoried: String
     }
 `;
 
@@ -36,6 +36,14 @@ export const CreateAsset = gql`
                 }
             }
             serialNumber
+        }
+    }
+`;
+
+export const DeleteAsset = gql`
+    mutation deleteAsset($id: Int) {
+        deleteAsset(id: $id){
+            id
         }
     }
 `;

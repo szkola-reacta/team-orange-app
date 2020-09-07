@@ -7,7 +7,9 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 import Header from './components/common/Header';
+
 import QueryAssets from './components/Assets/QueryAssets';
+
 import QueryStatuses from './components/Statuses/QueryStatuses';
 import EditStatus from './components/Statuses/EditStatus';
 import CreateStatus from './components/Statuses/CreateStatus';

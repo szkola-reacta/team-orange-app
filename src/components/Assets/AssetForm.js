@@ -16,7 +16,7 @@ class AssetForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            assetNr: '',
+            assetNr: this.props.asseNr,
             description: '',
             eqNr: '',
             serialNumber: ''
@@ -54,28 +54,6 @@ class AssetForm extends Component {
 
     }
 
-    // const [updateAssetResult, updateAsset] = useMutation(NewAsset);
-
-    // handleAssetCreation = (e) => {
-    //     const updatedAsset = [...assetState];
-    //     updatedAsset[e.target.name] = e.target.value;
-    //     setAssetState(updatedAsset);
-    //     console.log(e.target.name, e.target.value)
-    // };
-
-    // const submit = useCallback(() => {
-    // const variables = {
-    //     assetNr: assetState.assetNr,
-    //     description: assetState.description,
-    //     eqNr: assetState.eqNr,
-    //  };
-    // NewAsset(variables).then(result => {
-    //     props.history.push('/QueryAssets')
-    //     if(result.error) {
-    //         console.log(result.error)
-    //     }
-    //     });
-    // });
     render() {
     return (
         <Form.Row className="align-items-center">
