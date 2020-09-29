@@ -1,24 +1,24 @@
 import React, { useCallback } from 'react';
 import { useMutation } from 'urql';
-import { DeleteStatus as DropStatus } from '../common/mutations';
+import { DeleteDepartment as DropDepartment } from '../common/mutations';
 import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { withRouter } from 'react-router-dom';
 
 
-const DeleteStatus = props => {
+const DeleteDepartment = props => {
 
-    const [deleteStatusResult, deleteStatus] = useMutation(DropStatus);
+    const [deleteDepartmentResult, deleteDepartment] = useMutation(DropDepartment);
 
     const submit = useCallback(() => {
         const variables = {id: props.id};
-        deleteStatus(variables).then(result => {
-            props.history.push('/QueryStatuses')
+        deleteDepartment(variables).then(result => {
+            props.history.push('/QueryDepartments')
             if(result.error) {
                 console.log(result.error)
             }
-            console.log('deleteStatusResult', deleteStatusResult)
+            console.log('deleteDepartmentResult', deleteDepartmentResult)
         })
     });
     return (
@@ -31,4 +31,4 @@ const DeleteStatus = props => {
     )
 }
 
-export default withRouter(DeleteStatus);
+export default withRouter(DeleteDepartment);

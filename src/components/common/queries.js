@@ -24,11 +24,12 @@ export const AssetsQuery = gql`
                   detailedName
                 }
                 owner
+                inventoried
+                entryDate
               }
                   }
               }
 `;
-
 
 export const ManufacturerQuery = gql`
     query manufacturer($search: String, $id: Int){

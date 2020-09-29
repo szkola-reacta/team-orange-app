@@ -2,6 +2,7 @@ import React from 'react';
 import { StatusQuery } from "../common/queries";
 import { useQuery } from "urql";
 import Statuses from "./Statuses"
+import { withRouter } from 'react-router-dom';
 
 
 const QueryStatuses = ({ search, id }) => {
@@ -24,4 +25,4 @@ const QueryStatuses = ({ search, id }) => {
     )
 };
 
-export default QueryStatuses;
+export default withRouter(QueryStatuses);

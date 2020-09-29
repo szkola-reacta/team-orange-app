@@ -8,52 +8,56 @@ import '../style/Assets.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
-import ListStatuses from './ListStatuses';
+import ListDepartments from './ListDepartments';
 
 
-class Statuses extends Component {
+class Departments extends Component {
   constructor(props) {
-    super(props);
-    this.state = {
-      query: "",
-      data: [],
-      filteredData: []
-    };
-  }
-      handleInputChange = event => {
-        const query = event.target.value;
-        this.setState(prevState => {
-          const filteredData = prevState.data.filter(element => {
-            return (
-              element.status.toLowerCase().includes(query.toLowerCase())
-            )
-          });
-
-          return {
-            query,
-            filteredData
-          };
-        });
+      super(props);
+      this.state = {
+          query: "",
+          data: [],
+          filteredData: []
       };
-
-      handleClearInput = () => {
-          this.setState({
-              filteredData: this.state.data
-          });
-      }
-      componentDidMount() {
-        this.setState({
-          data: this.props.statusesAll.status,
-          filteredData: this.props.statusesAll.status
-        })
   }
-      render() {
-        return (
-            <div>
-              <Link to={{pathname: `/CreateStatus/`}}>
-                Nowy status <FontAwesomeIcon icon={faPencilAlt} />
+
+  handleInputChange = event => {
+      const query = event.target.value;
+      this.setState(prevState => {
+          const filteredData = prevState.data.filter(element => {
+            return(
+                element.name.toLowerCase().includes(query.toLowerCase()) ||
+                element.detailedName.toLowerCase().includes(query.toLowerCase())
+            )
+      });
+
+      return {
+          query,
+          filteredData
+      }
+  });
+};
+
+handleClearInput = () => {
+    this.setState({
+        filteredData: this.state.data
+    });
+}
+
+componentDidMount() {
+    this.setState({
+        data: this.props.deptsAll.department,
+        filteredData: this.props.deptsAll.department
+    })
+  }
+
+  render() {
+      return (
+          <div>
+              <Link to={{pathname: `/CreateDepartment/`}}>
+                  new department <FontAwesomeIcon icon={faPencilAlt} />
               </Link>
-                <InputGroup className="searchForm">
+              <InputGroup className="searchForm">
                     <FormControl
                     placeholder="Search for..."
                     aria-label="Search for..."
@@ -67,9 +71,10 @@ class Statuses extends Component {
                     </InputGroup.Text>
                     </InputGroup.Append>
                 </InputGroup>
-          <ListStatuses statuses={this.state.filteredData} />
+                <ListDepartments departments={this.state.filteredData} />
           </div>
-        );
-      }
+      )
   }
-export default Statuses;
+}
+
+export default Departments;

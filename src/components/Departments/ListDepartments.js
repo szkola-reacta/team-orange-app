@@ -1,42 +1,45 @@
 import React, { Component } from 'react'
 import Table from 'react-bootstrap/Table';
 import { withRouter, Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPencilAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
 
-class ListStatuses extends Component {
+class ListDepartments extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            statuses: [],
+            departments: [],
+            selected: ''
         };
     }
 
     componentDidMount() {
         this.setState({
-            statuses: this.props.statuses,
+            departments: this.props.departments
         })
     }
 
     render() {
-        const { statuses } = this.props
+        const { departments } = this.props
     return (
              <Table responsive striped bordered variant="dark" hover size="sm">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>status</th>
+                        <th>nazwa</th>
+                        <th>szczegółowa nazwa</th>
                         <th>edit</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {statuses.map(i =>
+                    {departments.map(i =>
                     <tr key={i.id}>
                         <td>{i.id}</td>
-                        <td>{i.status}</td>
+                        <td>{i.name}</td>
+                        <td>{i.detailedName}</td>
                         <td>
-                            <Link to={{pathname: `/EditStatus/`, id: i.id}}>
+                            <Link to={{pathname: `/EditDepartment/`, id: i.id}}>
                                 <FontAwesomeIcon icon={faPencilAlt} />
                             </Link>
                         </td>
@@ -48,4 +51,4 @@ class ListStatuses extends Component {
     }
 }
 
-export default withRouter(ListStatuses);
+export default withRouter(ListDepartments);

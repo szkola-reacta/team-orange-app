@@ -1,39 +1,30 @@
-import React, { useCallback } from 'react';
-import { CreateAsset as NewAsset } from '../common/mutations';
+import React, { useCallback, useState } from 'react';
+import { AssetsQuery } from '../common/queries';
+import { EditAsset as UpdateAsset } from '../common/mutations';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import AssetForm from './AssetForm';
-import { useMutation } from 'urql';
+import { useMutation, useQuery } from 'urql';
 
 
-const CreateAsset = props => {
+const EditAsset = props => {
 
-    const blankAsset = {
-        assetNr: props.assetNr,
-        eqNr: props.eqNr,
-        serialNumber: props.serialNumber,
-        manufacturer: props.manufacturerId,
-        description: props.description,
-        history: [{
-            departmentId: props.departmentId,
-            status: props.statusId,
-            owner: props.owner,
-            inventoried: props.inventoried
-        }]
-    }
+    console.log(props.asset)
 
-    const [createAssetResult, newAsset] = useMutation(NewAsset);
+    const [redirect, RedirectToList] = useState('false')
+
+    const [UpdateAssetResult, updateAsset] = useMutation(UpdateAsset);
 
     const submit = useCallback(() => {
-        const variables = blankAsset;
-        newAsset(variables).then(result => {
+        const variables = this.props.asset;
+        updateAsset(variables).then(result => {
             props.history.push('/QueryAssets')
             if(result.error) {
                 console.log(result.error)
             }
         });
-        console.log(createAssetResult)
+        console.log(UpdateAssetResult)
     });
 
     return (
@@ -62,4 +53,4 @@ const mapStateToProps = function(store) {
     }
 };
 
-export default connect(mapStateToProps)(CreateAsset);
+export default connect(mapStateToProps)(EditAsset);

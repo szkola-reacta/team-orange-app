@@ -1,11 +1,12 @@
 import gql from 'graphql-tag';
 
+// Asset //
 export const CreateHistoryInput = gql`
     input CreateHistoryInput {
         departmentId: Int!
         status: Int!
         onwer: String
-        inventoried: DateTime
+        inventoried: String
     }
 `;
 
@@ -29,12 +30,55 @@ export const CreateAsset = gql`
                     status
                 }
             }
-            manufacturer
+            manufacturer {
+                manufacturer {
+                    id
+                }
+            }
             serialNumber
         }
     }
 `;
 
+export const EditAsset = gql`
+    mutation editAsset($assetNr: String!, $description: String, $eqNr: String, $history: [CreateHistoryInput], $manufacturer: Int!, $serialNumber: String) {
+        editAsset(assetNr: $assetNr, description: $description, eqNr: $eqNr, history: $history, manufacturer: $manufacturer, serialNumber: $serialNumber){
+            id
+            assetNr
+            description
+            eqNr
+            history {
+                id
+                department {
+                    id
+                    name
+                    detailedName
+                }
+                inventoried
+                owner
+                status {
+                    status
+                }
+            }
+            manufacturer {
+                manufacturer {
+                    id
+                }
+            }
+            serialNumber
+        }
+    }
+`;
+
+export const DeleteAsset = gql`
+    mutation deleteAsset($id: Int) {
+        deleteAsset(id: $id){
+            id
+        }
+    }
+`;
+
+// Status //
 export const CreateStatus = gql`
     mutation createStatus($status: String!) {
         createStatus(status: $status){
@@ -61,7 +105,7 @@ export const DeleteStatus = gql`
     }
 `;
 
-
+// Manufacturer //
 export const CreateManufacturer = gql`
     mutation createManufacturer($name: String!){
         createManufacturer(name: $name){
@@ -84,6 +128,35 @@ export const EditManufacturer = gql`
 export const DeleteManufacturer = gql`
     mutation deleteManufacturer($id: Int!){
         deleteManufacturer(id: $id){
+            id
+        }
+    }
+`;
+
+// Department //
+export const CreateDepartment = gql`
+    mutation createDepartment($name: String!, $detailedName: String){
+        createDepartment(name: $name, detailedName: $detailedName){
+            id
+            name
+            detailedName
+        }
+    }
+`;
+
+export const EditDepartment = gql`
+    mutation editDepartment($id: Int!, $name: String, $detailedName: String){
+        editDepartment(id: $id, name: $name, detailedName: $detailedName){
+            id
+            name
+            detailedName
+        }
+    }
+`;
+
+export const DeleteDepartment = gql`
+    mutation deleteDepartment($id: Int!){
+        deleteDepartment(id: $id){
             id
         }
     }
