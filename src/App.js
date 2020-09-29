@@ -23,6 +23,7 @@ import CreateDepartment from './components/Departments/CreateDepartment';
 import EditDepartment from './components/Departments/EditDepartment';
 
 import CreateAsset from './components/Assets/CreateAsset';
+import EditAsset from './components/Assets/EditAsset';
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
         <Route exact path='/CreateDepartment' component={CreateDepartment} />
         <Route exact path='/EditDepartment' render={(props) => <EditDepartment {...props}/>}/>
         <Route exact path='/CreateAsset' render={(props) => <CreateAsset {...props}/>}/>
+        <Route exact path='/EditAsset' render={(props) => <EditAsset {...props}/>}/>
       </Switch>
     </div>
     </Provider>

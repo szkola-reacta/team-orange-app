@@ -40,6 +40,36 @@ export const CreateAsset = gql`
     }
 `;
 
+export const EditAsset = gql`
+    mutation editAsset($assetNr: String!, $description: String, $eqNr: String, $history: [CreateHistoryInput], $manufacturer: Int!, $serialNumber: String) {
+        editAsset(assetNr: $assetNr, description: $description, eqNr: $eqNr, history: $history, manufacturer: $manufacturer, serialNumber: $serialNumber){
+            id
+            assetNr
+            description
+            eqNr
+            history {
+                id
+                department {
+                    id
+                    name
+                    detailedName
+                }
+                inventoried
+                owner
+                status {
+                    status
+                }
+            }
+            manufacturer {
+                manufacturer {
+                    id
+                }
+            }
+            serialNumber
+        }
+    }
+`;
+
 export const DeleteAsset = gql`
     mutation deleteAsset($id: Int) {
         deleteAsset(id: $id){

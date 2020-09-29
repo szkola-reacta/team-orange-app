@@ -1,34 +1,23 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
+import { AssetsQuery } from '../common/queries';
 import { EditAsset as UpdateAsset } from '../common/mutations';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import AssetForm from './AssetForm';
-import { useMutation } from 'urql';
+import { useMutation, useQuery } from 'urql';
 
 
 const EditAsset = props => {
 
-    const initAsset = {
+    console.log(props.asset)
 
-        assetId: props.assetId,
-        assetNr: props.assetNr,
-        eqNr: props.eqNr,
-        serialNumber: props.serialNumber,
-        manufacturer: props.manufacturerId,
-        description: props.description,
-        history: [{
-            departmentId: props.departmentId,
-            status: props.statusId,
-            owner: props.owner,
-            inventoried: props.inventoried
-        }]
-    }
+    const [redirect, RedirectToList] = useState('false')
 
     const [UpdateAssetResult, updateAsset] = useMutation(UpdateAsset);
 
     const submit = useCallback(() => {
-        const variables = initAsset;
+        const variables = this.props.asset;
         updateAsset(variables).then(result => {
             props.history.push('/QueryAssets')
             if(result.error) {

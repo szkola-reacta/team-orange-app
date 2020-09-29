@@ -17,9 +17,9 @@ class AssetForm extends Component {
         super(props);
         this.state = {
             assetNr: this.props.asseNr,
-            description: '',
-            eqNr: '',
-            serialNumber: ''
+            description: this.props.description,
+            eqNr: this.props.eqNr,
+            serialNumber: this.props.serialNumber
         };
         this.handleChange = this.handleChange.bind(this);
     }
